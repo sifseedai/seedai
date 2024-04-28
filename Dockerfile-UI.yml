@@ -1,0 +1,19 @@
+# Use the official Python image as base
+FROM python:3.10.9
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the Streamlit app script into the container
+COPY CYPUI.py /app/
+
+# Update pip and install Streamlit
+RUN pip install --upgrade pip && \
+    pip install streamlit
+
+# Expose the port that Streamlit runs on
+EXPOSE 8501
+
+# Set the entrypoint to run the Streamlit app
+# ENTRYPOINT ["streamlit", "run", "CYPUI.py", "--server.port=8501", "--server.address=0.0.0.0"]
+CMD streamlit run CYPUI.py
